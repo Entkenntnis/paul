@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+
+    <!-- Bootstrap -->
+    <link href="bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+      body {
+        background-image:url(background.jpg);
+      }
+      
+      pre {
+        white-space: pre-wrap;       /* css-3 */
+        white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+        white-space: -pre-wrap;      /* Opera 4-6 */
+        white-space: -o-pre-wrap;    /* Opera 7 */
+        word-wrap: break-word;       /* Internet Explorer 5.5+ */
+        word-break: keep-all;
+      }
+      
+      p {
+        color:white;
+      }
+      
+      a, a:hover {
+        color:#0000aa
+      }
+    </style>
+
+    <title>Paul</title>
+    
+    <script src="paul.js"></script>
+    <script>
+    
+    function run() {
+      var result = Main(document.getElementById('numbers').value.trim()).split('#')
+      if (result.length < 2) {
+        result.push('')
+      }
+      document.getElementById('output').innerHTML = result[0]
+      document.getElementById('explainer').innerHTML = result[1]
+    }
+    
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <div style="height:130px"></div>
+      <p class="lead"><strong>Gib eine Zahlenreihe ein. Paul wird versuchen, sie fortzusetzen:</strong></p>
+      <input id="numbers" type="text" style="font-size:xx-large;width:100%" value="1 1 2 3" ></input>
+      <a class="btn btn-primary" style="margin-top:20px;width:100px" onclick="run()">Start</a>
+      <p><br>Achtung, bei vielen Zahlen kann die Berechnung lange dauern! <a href="paul.pdf">Weitere Infos</a><br></p>
+      <p class="lead"><strong>Ergebnis:</strong></p>
+      <pre id="output" style="font-size:large" class="textwrap"></pre>
+      <p><br>Regel:</p>
+      <p id="explainer"></p>  
+    </div>
+    <script>
+    document.getElementById('numbers').onkeypress = function(e){
+      if (!e) e = window.event;
+      var keyCode = e.keyCode || e.which;
+      if (keyCode == '13'){
+        run()
+        return false;
+      }
+    }
+    
+    run()
+    </script>
+  </body>
+</htm>
+
